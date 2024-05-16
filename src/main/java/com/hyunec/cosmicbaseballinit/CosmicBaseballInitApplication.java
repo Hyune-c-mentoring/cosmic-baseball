@@ -1,5 +1,7 @@
 package com.hyunec.cosmicbaseballinit;
 
+import com.hyunec.cosmicbaseballinit.controller.BaseballController;
+import com.hyunec.cosmicbaseballinit.entity.BaseballGame;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
