@@ -8,7 +8,6 @@ import java.util.Random;
 @Component
 public class BaseballGame {
 
-    //객체 선언
     private int strikes;
     private int balls;
     private Random random;
@@ -27,6 +26,7 @@ public class BaseballGame {
     }
 
     public void processResult(String result) {
+
         if (result.equals("스트라이크")) {
             processStrike();
         } else if (result.equals("볼")) {
