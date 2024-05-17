@@ -24,7 +24,7 @@ public class BaseballGame {
 
     //스윙했을 때 돌아올 수 있는 값들 담아놓음.
     public String swing() {
-        String[] possibleResults = {"스트라이크", "볼", "안타"};
+        String[] possibleResults = {"스트라이크", "볼", "안타", "더블 스트라이크" ,"더블 볼"};
         int index = random.nextInt(possibleResults.length);
         return possibleResults[index];
     }
@@ -35,11 +35,11 @@ public class BaseballGame {
             processStrike();
         } else if (result.equals("볼")) {
             processBall();
-        } //else if (result.equals("더블 스트라이크")) {
-//            processDoubleStrike();
-//        } else if (result.equals("더블 볼")) {
-//            processDoubleBall();
-//        }
+        } else if (result.equals("더블 스트라이크")) {
+            processDoubleStrike();
+        } else if (result.equals("더블 볼")) {
+            processDoubleBall();
+        }
     }
 
 
@@ -74,9 +74,9 @@ public class BaseballGame {
         balls++;
     }
 
-//    private void processDoubleStrike() { strikes += 2;}
-//
-//    private void processDoubleBall() { balls += 2;}
+    private void processDoubleStrike() { strikes += 2;}
+
+    private void processDoubleBall() { balls += 2;}
 
 
 }
