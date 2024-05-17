@@ -3,16 +3,15 @@ package com.hyunec.cosmicbaseballinit.controller;
 import com.hyunec.cosmicbaseballinit.entity.BaseballGame;
 import com.hyunec.cosmicbaseballinit.handler.StrikeHandler;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BaseballControllerTest {
 
-    private final StrikeHandler strikeHandler;
+    @Autowired
+    private StrikeHandler strikeHandler;
 
-    public BaseballControllerTest(StrikeHandler strikeHandler) {
-        this.strikeHandler = strikeHandler;
-    }
     @Test
     void testSwing() {
         //반환되는 결과가 null이 아닌 게임 결과인지 확인
