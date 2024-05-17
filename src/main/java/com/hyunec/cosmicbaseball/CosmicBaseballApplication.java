@@ -1,13 +1,13 @@
-package com.hyunec.cosmicbaseballinit;
+package com.hyunec.cosmicbaseball;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CosmicBaseballInitApplication {
+public class CosmicBaseballApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CosmicBaseballInitApplication.class, args);
+        SpringApplication.run(CosmicBaseballApplication.class, args);
     }
 
 }

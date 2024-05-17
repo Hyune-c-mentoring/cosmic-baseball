@@ -1,4 +1,4 @@
-package com.hyunec.cosmicbaseballinit.acceptancetest;
+package com.hyunec.cosmicbaseball.acceptancetest;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
