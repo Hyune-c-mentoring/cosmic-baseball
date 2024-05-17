@@ -22,15 +22,10 @@ public class BaseballController {
         while (!baseballGame.isGameEnd()) {
             String result = baseballGame.swing();
             baseballGame.processResult(result);
-            return "타격 결과입니당 : " + result;
+            return "타격 결과입니담 : " + result;
         }
 
-        if (baseballGame.isThreeStrikes()) {
-            return "스트라이크 3개로 아웃되었습니다.";
-        } else if (baseballGame.isFourBalls()) {
-            return "볼넷! 출루하였습니다. 게임이 종료됩니다.";
-        } else {
-            return "안타! 출루하였습니다. 게임이 종료됩니다.";
-        }
+        return baseballGame.handleResult();
+
     }
 }

@@ -1,6 +1,6 @@
 package com.hyunec.cosmicbaseballinit.entity;
 
-import jakarta.persistence.Entity;
+import com.hyunec.cosmicbaseballinit.handler.StrikeHandler;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -12,10 +12,14 @@ public class BaseballGame {
     private int balls;
     private Random random;
 
-    public BaseballGame() {
-        this.strikes = 0;
-        this.balls = 0;
-        this.random = new Random();
+    private final StrikeHandler strikeHandler;
+
+
+    public BaseballGame(StrikeHandler strikeHandler) {
+        this.strikeHandler = strikeHandler;
+        this.strikes    = 0;
+        this.balls      = 0;
+        this.random     = new Random();
     }
 
     //스윙했을 때 돌아올 수 있는 값들 담아놓음.
@@ -31,8 +35,13 @@ public class BaseballGame {
             processStrike();
         } else if (result.equals("볼")) {
             processBall();
-        }
+        } //else if (result.equals("더블 스트라이크")) {
+//            processDoubleStrike();
+//        } else if (result.equals("더블 볼")) {
+//            processDoubleBall();
+//        }
     }
+
 
     //게임이 끝났는지 확인
     public boolean isGameEnd() {
@@ -48,6 +57,15 @@ public class BaseballGame {
         return balls == 4;
     }
 
+    public String handleResult() {
+        if (isThreeStrikes()) {
+            return strikeHandler.handleResult("s");
+        } else if (isFourBalls()) {
+            return strikeHandler.handleResult("b");
+        } else {
+            return strikeHandler.handleResult("a");
+        }
+    }
     private void processStrike() {
         strikes++;
     }
@@ -55,5 +73,10 @@ public class BaseballGame {
     private void processBall() {
         balls++;
     }
+
+//    private void processDoubleStrike() { strikes += 2;}
+//
+//    private void processDoubleBall() { balls += 2;}
+
 
 }
