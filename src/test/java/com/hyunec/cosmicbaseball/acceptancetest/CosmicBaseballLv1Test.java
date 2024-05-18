@@ -11,9 +11,9 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @Disabled
 class CosmicBaseballLv1Test {
-    @DisplayName("타격 결과는 모두 같은 확률을 가집니다.") //테스트의 목적을 설명하는 어노테이션
+    @DisplayName("타격 결과는 모두 같은 확률을 가집니다.")
     @Test
-    void t1()  {
+    void t1() {
         throw new RuntimeException("Not yet implemented");
     }
 
@@ -22,6 +22,4 @@ class CosmicBaseballLv1Test {
     void t2() {
         throw new RuntimeException("Not yet implemented");
     }
-
-    // 아직 구현이 안돼서 RuntimeException을 날림
 }
