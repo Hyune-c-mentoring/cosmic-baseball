@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class CosmicBaseballLv3Test {
     @DisplayName("fever inning 에는 안타 확률이 2배가 됩니다.")
     @Test

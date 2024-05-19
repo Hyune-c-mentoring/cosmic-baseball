@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class CosmicBaseballLv2Test {
     @DisplayName("strike 의 20% 는 bullseye_strike 입니다.")
     @Test

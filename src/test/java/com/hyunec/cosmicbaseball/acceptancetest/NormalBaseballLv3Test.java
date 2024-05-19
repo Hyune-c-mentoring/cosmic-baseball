@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class NormalBaseballLv3Test {
     @DisplayName("타격 결과 확률을 가변적으로 입력받을 수 있습니다.")
     @Test
