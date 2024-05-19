@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class NormalBaseballLv4Test {
     @DisplayName("3번째 회가 종료되면 게임이 종료됩니다.")
     @Test

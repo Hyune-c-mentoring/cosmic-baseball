@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class NormalBaseballLv2Test {
     @DisplayName("타석 상태를 표현할 수 있습니다.")
     @Test

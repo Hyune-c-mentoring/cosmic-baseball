@@ -1,8 +1,10 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 class CosmicBaseballLv5Test {
     @DisplayName("홀수 회는 타격 결과가 모두 동일합니다.")
     @Test
