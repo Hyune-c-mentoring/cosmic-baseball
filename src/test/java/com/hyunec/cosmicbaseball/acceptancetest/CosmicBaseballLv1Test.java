@@ -12,16 +12,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @SpringBootTest
-@AutoConfigureMockMvc
 class CosmicBaseballLv1Test {
-    @Autowired
-    private MockMvc mockMvc;
-
     @DisplayName("타격 결과는 모두 같은 확률을 가집니다.") //테스트의 목적을 설명하는 어노테이션
     @Test
-    void t1() throws Exception {
-        mockMvc.perform(get("/api/playGame"))
-                .andExpect(status().isOk());
+    void t1()  {
+        throw new RuntimeException("Not yet implemented");
     }
 
     @DisplayName("타격 결과는 strike, ball, hit, double_ball, double_strike 입니다.")

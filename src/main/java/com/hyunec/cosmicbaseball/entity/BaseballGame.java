@@ -1,10 +1,12 @@
 package com.hyunec.cosmicbaseball.entity;
 
 import com.hyunec.cosmicbaseball.handler.StrikeHandler;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+@Getter
 @Component
 public class BaseballGame {
 

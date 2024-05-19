@@ -15,4 +15,9 @@ public class StrikeHandler implements GameResultHandler{
             return "안타! 출루하였습니다. 게임이 종료됩니다.";
         }
     }
+
+    @Override
+    public String handleOnceResult(String result) {
+        return "타격 결과는 " + result + " 입니다.";
+    }
 }
