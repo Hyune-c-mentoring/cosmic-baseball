@@ -22,8 +22,8 @@ public class BaseballController {
     public String playGame() {
         while (!baseballGame.isGameEnd()) {
             String result = baseballGame.swing();
-            baseballGame.processResult(result);
-            return resultHandler.handleOnceResult(result);
+            String processedResult = baseballGame.processResult(result);
+            return resultHandler.handleOnceResult(processedResult, baseballGame.isGameEnd());
         }
 
         return baseballGame.handleResult();

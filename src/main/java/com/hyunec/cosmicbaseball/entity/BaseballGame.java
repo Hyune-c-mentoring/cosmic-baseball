@@ -10,31 +10,47 @@ import java.util.Random;
 public class BaseballGame {
     private int strikeCount;
     private int ballCount;
+    private String lastResult;
     private final Random random;
 
     private final ResultHandler resultHandler;
 
     private BaseballGame(ResultHandler resultHandler) {
-        this.strikeCount = 0;
-        this.ballCount = 0;
-        this.random = new Random();
-        this.resultHandler = resultHandler;
+        this.strikeCount    = 0;
+        this.ballCount      = 0;
+        this.lastResult     = "";
+        this.random         = new Random();
+        this.resultHandler  = resultHandler;
     }
 
     //스윙했을 때 돌아올 수 있는 값들 담아놓음.
     public String swing() {
-        List<String> possibleResults = Arrays.asList("스트라이크", "볼", "안타");
+        List<String> possibleResults = Arrays.asList("스트라이크", "안타", "볼");
         int index = random.nextInt(possibleResults.size());
         return possibleResults.get(index);
     }
 
-    public void processResult(String result) {
+    public String processResult(String result) {
 
         if (result.equals("스트라이크")) {
-            processStrike();
+            if (lastResult.equals("스트라이크")) {
+                result = "더블스트라이크";
+                processDoubleStrike();
+                return result;
+            }else {
+                processStrike();
+            }
         } else if (result.equals("볼")) {
-            processBall();
+            if (lastResult.equals("볼")) {
+                result = "더블볼";
+                processDoubleBall();
+                return result;
+            }else {
+                processBall();
+            }
         }
+        lastResult = result;
+        return result;
     }
 
 
@@ -45,11 +61,11 @@ public class BaseballGame {
     }
 
     public boolean isThreeStrikes() {
-        return strikeCount == 3;
+        return strikeCount >= 3;
     }
 
     public boolean isFourBalls() {
-        return ballCount == 4;
+        return ballCount >= 4;
     }
 
     public String handleResult() {
@@ -61,11 +77,36 @@ public class BaseballGame {
             return resultHandler.handleResult("a");
         }
     }
-    private void processStrike() {
+    public void incrementStrikeCount() {
         strikeCount++;
     }
 
-    private void processBall() {
-        ballCount++;
+    public void incrementStrikeCount(int count) {
+        strikeCount += count;
     }
+
+    public void incrementBallCount() {
+        ballCount ++;
+    }
+    public void incrementBallCount(int count) {
+        ballCount += count;
+    }
+
+    private void processStrike() {
+        incrementStrikeCount();
+    }
+
+    private void processBall() {
+        incrementBallCount();
+    }
+
+
+    private void processDoubleStrike() {
+        incrementStrikeCount(2);
+    }
+
+    private void processDoubleBall() {
+        incrementBallCount(2);
+    }
+
 }
