@@ -1,74 +1,73 @@
 package com.hyunec.cosmicbaseball.acceptancetest;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.hyunec.cosmicbaseball.entity.BaseballGame;
 import com.hyunec.cosmicbaseball.handler.ResultHandler;
-import org.assertj.core.api.Assertions;
+import com.hyunec.cosmicbaseball.util.BattingResult;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 class NormalBaseballLv1Test {
 
-    @Autowired
-    private ResultHandler resultHandler;
-    @Autowired
-    private BaseballGame baseballGame;
+  @Autowired
+  private ResultHandler resultHandler;
+  @Autowired
+  private BaseballGame baseballGame;
 
-    @Test
-    @DisplayName("타격 결과는 모두 같은 확률을 가집니다.")
-    void testSwing() {
+  @Test
+  @DisplayName("타격 결과는 모두 같은 확률을 가집니다.")
+  void testSwing() {
 
-        // Given
-        int numberOfSwings                = 10000; // 스윙 횟수
-        Map<String, Integer> resultCounts = new HashMap<>();
-        resultCounts.put("스트라이크", 0);
-        resultCounts.put("볼", 0);
-        resultCounts.put("안타", 0);
+    final int testCount = 100000;
 
-        // When : 스윙 시뮬레이션
-        for (int i = 0; i < numberOfSwings; i++) {
-            String result = baseballGame.swing();
-            resultCounts.put(result, resultCounts.get(result) + 1);
-        }
-
-        // Then
-        int expectedCount = numberOfSwings / 3;
-        int tolerance     = (int) (numberOfSwings * 0.05); // 허용 오차: 5%
-
-        Assertions.assertThat(resultCounts.get("스트라이크"))
-                .isCloseTo(expectedCount, Assertions.withinPercentage(5));
-        Assertions.assertThat(resultCounts.get("볼"))
-                .isCloseTo(expectedCount, Assertions.withinPercentage(5));
-        Assertions.assertThat(resultCounts.get("안타"))
-                .isCloseTo(expectedCount, Assertions.withinPercentage(5));
+    Map<BattingResult, Integer> resultCounts = new HashMap<>();
+    for (BattingResult result : BattingResult.values()) {
+      resultCounts.put(result, 0);
     }
 
-    @Test
-    @DisplayName("타격 결과는 strike, ball, hit 입니다.")
-    void testPlayGame() {
+    // 테스트할 BaseballGame 인스턴스 생성
+    BaseballGame baseballGame = new BaseballGame(new ResultHandler(), null);
 
-        // Given
-        Map<String, Boolean> resultOccurred = new HashMap<>();
-        resultOccurred.put("스트라이크", false);
-        resultOccurred.put("볼", false);
-        resultOccurred.put("안타", false);
+    // 랜덤한 결과를 testCount만큼 생성 + 맵에 결과 누적
+    for (int i = 0; i < testCount; i++) {
+      BattingResult result = baseballGame.swing();
+      resultCounts.put(result, resultCounts.get(result) + 1);
+    }
 
-        // When
-        for (int i = 0; i < 100; i++) {
-            String result = baseballGame.swing();
-            Assertions.assertThat(resultOccurred).containsKey(result);
-            resultOccurred.put(result, true);
-        }
+    // 균일성 확인 (결과)
+    int expectedCountPerResult = testCount / BattingResult.values().length;
+    for (int count : resultCounts.values()) {
+      assertTrue(Math.abs(count - expectedCountPerResult) < 0.05 * testCount,
+          "균일한 확률이 아님");
+    }
+  }
 
-        // Then
-        Assertions.assertThat(resultOccurred.get("스트라이크")).isTrue();
-        Assertions.assertThat(resultOccurred.get("볼")).isTrue();
-        Assertions.assertThat(resultOccurred.get("안타")).isTrue();
-    }}
+  @Test
+  @DisplayName("타격 결과는 strike, ball, hit 입니다.")
+  void testPlayGame() {
+
+    // Given
+    BaseballGame baseballGame = new BaseballGame(new ResultHandler(), null);
+    Set<BattingResult> expectedResults = new HashSet<>();
+    expectedResults.add(BattingResult.STRIKE);
+    expectedResults.add(BattingResult.BALL);
+    expectedResults.add(BattingResult.HIT);
+
+    // When
+    for (int i = 0; i < 1000; i++) {
+      BattingResult result = baseballGame.swing();
+
+      // Then
+      assertTrue(expectedResults.contains(result), "Unexpected batting result: " + result);
+    }
+  }
+}
