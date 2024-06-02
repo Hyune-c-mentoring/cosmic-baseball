@@ -1,9 +1,10 @@
 package com.hyunec.cosmicbaseball.handler;
 
-import org.springframework.stereotype.Component;
+import com.hyunec.cosmicbaseball.util.ResultType;
 
 public interface GameResultHandler {
-    String handleResult(String result);
 
-    String handleOnceResult(String result, boolean isGameEnd);
+  ResultType handleResult(String result);
+
+  ResultType handleOnceResult(String result, boolean isGameEnd);
 }

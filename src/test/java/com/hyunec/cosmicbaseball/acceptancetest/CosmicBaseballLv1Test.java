@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.hyunec.cosmicbaseball.entity.BaseballGame;
 import com.hyunec.cosmicbaseball.handler.ResultHandler;
 import com.hyunec.cosmicbaseball.util.BattingResult;
+import com.hyunec.cosmicbaseball.util.PlateAppearanceResult;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -35,7 +36,7 @@ class CosmicBaseballLv1Test {
 
     // 랜덤한 결과를 testCount만큼 생성 + 맵에 결과 누적
     for (int i = 0; i < testCount; i++) {
-      BattingResult result = baseballGame.swing();
+      BattingResult result = baseballGame.batting();
       resultCounts.put(result, resultCounts.get(result) + 1);
     }
 
@@ -56,8 +57,8 @@ class CosmicBaseballLv1Test {
 
     // When
     for (int i = 0; i < 100; i++) {
-      BattingResult BR = baseballGame.swing();
-      String result = baseballGame.processResult(BR);
+      BattingResult battingResult = baseballGame.batting();
+      PlateAppearanceResult result = baseballGame.processResult(battingResult);
 
       // Then
       assertTrue(validResults.contains(result), () -> "Invalid batting result: " + result);

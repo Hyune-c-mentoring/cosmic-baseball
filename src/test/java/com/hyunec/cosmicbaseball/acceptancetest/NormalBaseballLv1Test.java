@@ -39,7 +39,7 @@ class NormalBaseballLv1Test {
 
     // 랜덤한 결과를 testCount만큼 생성 + 맵에 결과 누적
     for (int i = 0; i < testCount; i++) {
-      BattingResult result = baseballGame.swing();
+      BattingResult result = baseballGame.batting();
       resultCounts.put(result, resultCounts.get(result) + 1);
     }
 
@@ -64,7 +64,7 @@ class NormalBaseballLv1Test {
 
     // When
     for (int i = 0; i < 1000; i++) {
-      BattingResult result = baseballGame.swing();
+      BattingResult result = baseballGame.batting();
 
       // Then
       assertTrue(expectedResults.contains(result), "Unexpected batting result: " + result);

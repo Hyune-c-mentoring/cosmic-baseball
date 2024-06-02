@@ -4,9 +4,8 @@ import java.util.Random;
 import java.util.function.Function;
 
 public enum BattingResult {
-  STRIKE(lastResult -> lastResult.equals("STRIKE") ? "DOUBLESTRIKE" : "STRIKE"),
-  BALL(lastResult -> lastResult.equals("BALL") ? "DOUBLEBALL" : "BALL"),
-  HIT(lastResult -> "HIT");
+  STRIKE(lastResult -> lastResult.equals("STRIKE") ? "DOUBLESTRIKE" : "STRIKE"), BALL(
+      lastResult -> lastResult.equals("BALL") ? "DOUBLEBALL" : "BALL"), HIT(lastResult -> "HIT");
 
   private static final Random RANDOM = new Random();
   private final Function<String, String> resultProcessor;
